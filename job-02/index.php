@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>job-02</title>
-  <!-- on charge le JS externe -->
+  <meta charset="UTF-8">
+  <title>Mon JavaScript </title>
+  <!-- On charge le JS externe -->
   <script src="script.js" defer></script>
 </head>
 <body>
+  <h1>Bienvenue</h1>
 </body>
 </html>
