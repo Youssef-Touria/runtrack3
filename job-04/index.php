@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>job-04</title>
+  <meta charset="UTF-8">
+  <title>Années bissextiles</title>
   <script src="script.js" defer></script>
 </head>
-<body></body>
+<body>
+ 
+  <h1>Test de la fonction bisextile</h1>
+    <p>Ouvrez la console JavaScript (F12) pour voir les résultats des tests.</p>
+    
+</body>
 </html>

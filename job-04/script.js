@@ -1,28 +1,18 @@
-/**
- * Retourne true si l'année est bisextile, sinon false.
- * Règle :
- * - divisible par 4 ET pas par 100, OU divisible par 400
- */
+// Fonction pour déterminer si une année est bisextile
 function bisextile(annee) {
-  // (facultatif) sécurités
-  if (!Number.isInteger(annee)) {
-    throw new TypeError('annee doit être un entier');
-  }
-  return (annee % 4 === 0 && annee % 100 !== 0) || (annee % 400 === 0);
+    // Une année est bisextile si :
+    // - Elle est divisible par 4 ET
+    // - (Elle n'est pas divisible par 100 OU elle est divisible par 400)
+    if (annee % 4 === 0 && (annee % 100 !== 0 || annee % 400 === 0)) {
+        return true;
+    }
+    return false;
 }
 
-// Petits tests en console
-console.log('2000 →', bisextile(2000)); // true
-console.log('1900 →', bisextile(1900)); // false
-console.log('2024 →', bisextile(2024)); // true
-console.log('2025 →', bisextile(2025)); // false
-console.log('2007→', bisextile(2007)); // false
-console.log('1600 →', bisextile(1600)); // true
-console.log('2020 →', bisextile(2020)); // true
-console.log('1800 →', bisextile(1800)); // false
-console.log('2021 →', bisextile(2021)); // false
-console.log('2028 →', bisextile(2028)); // true
-
-
-
-
+// Tests de la fonction
+console.log("2024 est bisextile :", bisextile(2024)); // true
+console.log("2023 est bisextile :", bisextile(2023)); // false
+console.log("2000 est bisextile :", bisextile(2000)); // true
+console.log("1900 est bisextile :", bisextile(1900)); // false
+console.log("2100 est bisextile :", bisextile(2100)); // false
+console.log("2400 est bisextile :", bisextile(2400)); // true
