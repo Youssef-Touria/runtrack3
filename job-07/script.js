@@ -16,9 +16,11 @@ function jourtravaille(date) {
     ];
 
     // Formater la date au format YYYY-MM-DD
-    const jour = date.getDate();
-    const mois = date.getMonth() + 1; // Les mois commencent à 0
-    const annee = date.getFullYear();
+    const jour = date.getDate();//renvoie le jour du mois (1-31).
+    const mois = date.getMonth() + 1; // Les mois commencent à 0 (0 = janvier, 11 = décembre).
+    const jourSemaine = date.getDay(); // 0 (Dimanche) à 6 (Samedi)
+
+    const annee = date.getFullYear();//renvoie l’année complète (ex. 2020).
     
      const estFerie = joursFeries2020.includes(`${mois}-${jour}`);
 
