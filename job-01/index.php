@@ -9,6 +9,6 @@
   </script>
 </head>
 <body>
-  <h1>Bienvenue dans mon script</h1>
+  <h1>Bienvenue dans mon premier script</h1>
 </body>
 </html>
