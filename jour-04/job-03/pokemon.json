@@ -1,0 +1,74 @@
+[
+    {
+        "id": 1,
+        "name": {
+            "english": "Bulbasaur",
+            "french": "Bulbizarre"
+        },
+        "type": ["Plante", "Poison"]
+    },
+    {
+        "id": 4,
+        "name": {
+            "english": "Charmander",
+            "french": "Salamèche"
+        },
+        "type": ["Feu"]
+    },
+    {
+        "id": 7,
+        "name": {
+            "english": "Squirtle",
+            "french": "Carapuce"
+        },
+        "type": ["Eau"]
+    },
+    {
+        "id": 25,
+        "name": {
+            "english": "Pikachu",
+            "french": "Pikachu"
+        },
+        "type": ["Électrik"]
+    },
+    {
+        "id": 39,
+        "name": {
+            "english": "Jigglypuff",
+            "french": "Rondoudou"
+        },
+        "type": ["Normal", "Fée"]
+    },
+    {
+        "id": 94,
+        "name": {
+            "english": "Gengar",
+            "french": "Ectoplasma"
+        },
+        "type": ["Spectre", "Poison"]
+    },
+    {
+        "id": 132,
+        "name": {
+            "english": "Ditto",
+            "french": "Métamorph"
+        },
+        "type": ["Normal"]
+    },
+    {
+        "id": 143,
+        "name": {
+            "english": "Snorlax",
+            "french": "Ronflex"
+        },
+        "type": ["Normal"]
+    },
+    {
+        "id": 150,
+        "name": {
+            "english": "Mewtwo",
+            "french": "Mewtwo"
+        },
+        "type": ["Psy"]
+    }
+]
