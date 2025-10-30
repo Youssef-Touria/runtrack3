@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Job 02 – Validation en temps réel</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <h1>Création de profil</h1>
+    <p class="hint">Chaque champ est vérifié en temps réel. Le bouton s’active quand tout est valide.</p>
+
+    <form id="profile-form" novalidate>
+      <div class="field">
+        <label for="username">Nom d’utilisateur</label>
+        <input id="username" name="username" type="text" autocomplete="username" required
+               aria-describedby="err-username" aria-invalid="false">
+        <small id="err-username" class="error" aria-live="polite"></small>
+      </div>
+
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" autocomplete="email" required
+               aria-describedby="err-email" aria-invalid="false">
+        <small id="err-email" class="error" aria-live="polite"></small>
+      </div>
+
+      <div class="field">
+        <label for="password">Mot de passe</label>
+        <div class="with-action">
+          <input id="password" name="password" type="password" autocomplete="new-password" required
+                 aria-describedby="err-password strength" aria-invalid="false">
+          <button type="button" class="ghost" id="togglePwd" aria-label="Afficher/masquer le mot de passe">👁️</button>
+        </div>
+        <meter id="strength" min="0" max="4" low="2" high="3" optimum="4" value="0"></meter>
+        <small id="err-password" class="error" aria-live="polite"></small>
+      </div>
+
+      <div class="field">
+        <label for="confirm">Confirmer le mot de passe</label>
+        <input id="confirm" name="confirm" type="password" autocomplete="new-password" required
+               aria-describedby="err-confirm" aria-invalid="false">
+        <small id="err-confirm" class="error" aria-live="polite"></small>
+      </div>
+
+      <div class="field">
+        <label for="phone">Téléphone (FR)</label>
+        <input id="phone" name="phone" type="tel" inputmode="tel" placeholder="06xxxxxxxx"
+               aria-describedby="err-phone" aria-invalid="false">
+        <small id="err-phone" class="error" aria-live="polite"></small>
+      </div>
+
+      <div class="field checkbox">
+        <input id="terms" type="checkbox" aria-describedby="err-terms" />
+        <label for="terms">J’accepte les conditions</label>
+        <small id="err-terms" class="error" aria-live="polite"></small>
+      </div>
+
+      <button id="submitBtn" type="submit" disabled>Valider</button>
+    </form>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
