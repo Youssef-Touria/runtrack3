@@ -1,14 +1,9 @@
 function jsonValueKey(jsonString, key) {
-    try {
-        const jsonObject = JSON.parse(jsonString);
-        return jsonObject[key];
-    } catch (error) {
-        console.error("Erreur lors du parsing JSON:", error);
-        return undefined;
-    }
+    const jsonObject = JSON.parse(jsonString);
+    return jsonObject[key];
 }
 
-// Tests
+// Test
 const jsonStr = `{
     "name": "La Plateforme_",
     "address": "8 rue d'hozier",
@@ -17,9 +12,4 @@ const jsonStr = `{
     "creation": "2019"
 }`;
 
-console.log(jsonValueKey(jsonStr, "city"));      // Affiche: Marseille
-console.log(jsonValueKey(jsonStr, "name"));      // Affiche: La Plateforme_
-console.log(jsonValueKey(jsonStr, "nb_staff"));  // Affiche: 11
-console.log(jsonValueKey(jsonStr, "creation"));  // Affiche: 2019
-console.log(jsonValueKey(jsonStr, "address"));   // Affiche: 8 rue d'hozier
-console.log(jsonValueKey(jsonStr, "country"));   // Affiche: undefined
+console.log(jsonValueKey(jsonStr, "city")); // Marseille
