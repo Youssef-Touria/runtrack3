@@ -1,108 +1,132 @@
-// --- Helpers ---
-const $ = (sel, root = document) => root.querySelector(sel);
-const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
+// Récupérer le formulaire
+const form = document.getElementById('inscription-form');
 
-const globalBox = $('#global-errors');
-const form = $('#register-form');
+// Récupérer tous les champs
+const nom = document.getElementById('nom');
+const prenom = document.getElementById('prenom');
+const email = document.getElementById('email');
+const password = document.getElementById('password');
+const adresse = document.getElementById('adresse');
+const codePostal = document.getElementById('code-postal');
 
-const ERR = {
-  first_required: 'Firstname is required',
-  last_required: 'Lastname is required',
-  pass_required: 'Password is required',
-  pass_format: 'Password format is wrong'
-};
-
-// Regex: min 8, ≥1 lettre, ≥1 chiffre, ≥1 spécial
-const PW_REGEX = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/;
-
-// --- Validation champs (inline) ---
-function setError(input, msg = '') {
-  const p = $('#' + input.id + '-error');
-  if (p) p.textContent = msg || '';
-  input.classList.toggle('invalid', !!msg);
+// Fonction pour afficher une erreur
+function afficherErreur(champId, message) {
+  const erreur = document.getElementById(champId + '-error');
+  erreur.textContent = message;
 }
 
-function validateFirst() {
-  const v = $('#firstName').value.trim();
-  if (!v) { setError($('#firstName'), ''); return false; } // global gère le "required"
-  if (v.length < 3) { setError($('#firstName'), 'La taille de votre prénom est trop petite'); return false; }
-  setError($('#firstName'), ''); return true;
+// Fonction pour effacer une erreur
+function effacerErreur(champId) {
+  const erreur = document.getElementById(champId + '-error');
+  erreur.textContent = '';
 }
 
-function validateLast() {
-  const v = $('#lastName').value.trim();
-  if (!v) { setError($('#lastName'), ''); return false; }
-  if (v.length < 3) { setError($('#lastName'), 'La taille de votre nom est trop petite'); return false; }
-  setError($('#lastName'), ''); return true;
+// Valider le nom
+function validerNom() {
+  const valeur = nom.value;
+  if (valeur.length < 2) {
+    afficherErreur('nom', 'Le nom doit avoir au moins 2 caractères');
+    return false;
+  }
+  effacerErreur('nom');
+  return true;
 }
 
-function validateEmail() {
-  const el = $('#email');
-  const v = el.value.trim();
-  if (!v) { setError(el, ''); return false; }
-  const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
-  setError(el, ok ? '' : "Format d'email invalide");
-  return ok;
+// Valider le prénom
+function validerPrenom() {
+  const valeur = prenom.value;
+  if (valeur.length < 2) {
+    afficherErreur('prenom', 'Le prénom doit avoir au moins 2 caractères');
+    return false;
+  }
+  effacerErreur('prenom');
+  return true;
 }
 
-function validatePassword() {
-  const el = $('#password');
-  const v = el.value;
-  if (!v) { setError(el, 'Minimum eight characters, at least one letter, one number and one special character'); return false; }
-  const ok = PW_REGEX.test(v);
-  setError(el, ok ? '' : 'Minimum eight characters, at least one letter, one number and one special character');
-  return ok;
+// Valider l'email
+function validerEmail() {
+  const valeur = email.value;
+  if (!valeur.includes('@')) {
+    afficherErreur('email', 'L\'email doit contenir un @');
+    return false;
+  }
+  if (!valeur.includes('.')) {
+    afficherErreur('email', 'L\'email doit contenir un point');
+    return false;
+  }
+  effacerErreur('email');
+  return true;
 }
 
-function validatePassword2() {
-  const el = $('#password2');
-  const v = el.value;
-  if (!v) { setError(el, 'Minimum eight characters, at least one letter, one number and one special character'); return false; }
-  const ok = PW_REGEX.test(v) && v === $('#password').value;
-  setError(el, ok ? '' : 'Les mots de passe ne correspondent pas ou format invalide');
-  return ok;
+// Valider le mot de passe
+function validerPassword() {
+  const valeur = password.value;
+  if (valeur.length < 8) {
+    afficherErreur('password', 'Le mot de passe doit avoir au moins 8 caractères');
+    return false;
+  }
+  effacerErreur('password');
+  return true;
 }
 
-// --- Erreurs globales comme la capture ---
-function renderGlobalErrors() {
-  const msgs = [];
-
-  if (!$('#firstName').value.trim()) msgs.push(ERR.first_required);
-  if (!$('#lastName').value.trim()) msgs.push(ERR.last_required);
-  if (!$('#password').value) msgs.push(ERR.pass_required);
-  if ($('#password').value && !PW_REGEX.test($('#password').value)) msgs.push(ERR.pass_format);
-
-  globalBox.innerHTML = msgs.map(m => `<p>${m}</p>`).join('');
-  globalBox.hidden = msgs.length === 0;
+// Valider l'adresse
+function validerAdresse() {
+  const valeur = adresse.value;
+  if (valeur.length < 5) {
+    afficherErreur('adresse', 'L\'adresse doit avoir au moins 5 caractères');
+    return false;
+  }
+  effacerErreur('adresse');
+  return true;
 }
 
-['input','blur'].forEach(evt => {
-  $('#firstName').addEventListener(evt, () => { validateFirst(); renderGlobalErrors(); });
-  $('#lastName').addEventListener(evt, () => { validateLast(); renderGlobalErrors(); });
-  $('#email').addEventListener(evt, () => { validateEmail(); });
-  $('#password').addEventListener(evt, () => { validatePassword(); renderGlobalErrors(); validatePassword2(); });
-  $('#password2').addEventListener(evt, () => { validatePassword2(); });
-});
+// Valider le code postal
+function validerCodePostal() {
+  const valeur = codePostal.value;
+  if (valeur.length !== 5) {
+    afficherErreur('code-postal', 'Le code postal doit avoir exactement 5 chiffres');
+    return false;
+  }
+  // Vérifier que ce sont bien des chiffres
+  if (isNaN(valeur)) {
+    afficherErreur('code-postal', 'Le code postal doit contenir uniquement des chiffres');
+    return false;
+  }
+  effacerErreur('code-postal');
+  return true;
+}
 
-// Submit
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const ok =
-    validateFirst() &
-    validateLast() &
-    validateEmail() &
-    validatePassword() &
-    validatePassword2();
+// Écouter les changements sur chaque champ (validation quand on quitte le champ)
+nom.addEventListener('blur', validerNom);
+prenom.addEventListener('blur', validerPrenom);
+email.addEventListener('blur', validerEmail);
+password.addEventListener('blur', validerPassword);
+adresse.addEventListener('blur', validerAdresse);
+codePostal.addEventListener('blur', validerCodePostal);
 
-  renderGlobalErrors();
-
-  if (ok) {
-    alert("Inscription OK (démo).");
+// Quand on soumet le formulaire
+form.addEventListener('submit', function(e) {
+  e.preventDefault(); // Empêche l'envoi du formulaire
+  
+  // Valider tous les champs
+  const nomValide = validerNom();
+  const prenomValide = validerPrenom();
+  const emailValide = validerEmail();
+  const passwordValide = validerPassword();
+  const adresseValide = validerAdresse();
+  const codePostalValide = validerCodePostal();
+  
+  // Si tout est valide
+  if (nomValide && prenomValide && emailValide && passwordValide && adresseValide && codePostalValide) {
+    alert('Formulaire valide ! Inscription réussie.');
+    console.log('Données du formulaire:');
+    console.log('Nom:', nom.value);
+    console.log('Prénom:', prenom.value);
+    console.log('Email:', email.value);
+    console.log('Password:', password.value);
+    console.log('Adresse:', adresse.value);
+    console.log('Code Postal:', codePostal.value);
   } else {
-    // scroll vers erreurs globales (comme UX classique)
-    globalBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    alert('Veuillez corriger les erreurs dans le formulaire');
   }
 });
-
-// Premier rendu (afficher erreurs globales si champs vides)
-renderGlobalErrors();

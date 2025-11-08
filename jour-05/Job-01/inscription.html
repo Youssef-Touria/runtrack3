@@ -1,69 +1,41 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <title>Jour 05 – Inscription</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>Inscription</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Barre verte + badges -->
-  <header class="topbar">
-    <div class="topbar__inner">
-      <div class="brand">Jour 05</div>
-      <nav class="actions">
-        <a class="pill" href="inscription.html">Inscription</a>
-        <a class="pill" href="connexion.html">Connexion</a>
-      </nav>
-    </div>
-  </header>
+  <h1>Inscription</h1>
+  <form id="inscription-form">
+    
+    <label for="nom">Nom</label>
+    <input id="nom" type="text" required>
+    <p class="error" id="nom-error"></p>
 
-  <!-- Erreurs globales centrées -->
-  <section id="global-errors" class="global-errors" aria-live="polite" hidden></section>
+    <label for="prenom">Prénom</label>
+    <input id="prenom" type="text" required>
+    <p class="error" id="prenom-error"></p>
 
-  <!-- Carte formulaire -->
-  <main class="container">
-    <form id="register-form" novalidate>
-      <div class="grid">
-        <div class="field">
-          <label for="firstName">Prénom</label>
-          <input id="firstName" name="firstName" type="text" placeholder="Aya" required />
-          <p class="error" id="firstName-error"></p>
-        </div>
+    <label for="email">Email</label>
+    <input id="email" type="email" required>
+    <p class="error" id="email-error"></p>
 
-        <div class="field">
-          <label for="lastName">Nom</label>
-          <input id="lastName" name="lastName" type="text" placeholder="Youssef" required />
-          <p class="error" id="lastName-error"></p>
-        </div>
-      </div>
+    <label for="password">Mot de passe</label>
+    <input id="password" type="password" required>
+    <p class="error" id="password-error"></p>
 
-      <div class="field">
-        <label for="email">Email</label>
-        <input id="email" name="email" type="email" placeholder="john@doe.fr" required />
-        <p class="error" id="email-error"></p>
-      </div>
+    <label for="adresse">Adresse</label>
+    <input id="adresse" type="text" required>
+    <p class="error" id="adresse-error"></p>
 
-      <div class="grid">
-        <div class="field">
-          <label for="password">Password</label>
-          <input id="password" name="password" type="password" placeholder="••••••••" required />
-          <p class="error" id="password-error">Minimum eight characters, at least one letter, one number and one special character</p>
-        </div>
+    <label for="code-postal">Code postal</label>
+    <input id="code-postal" type="text" required>
+    <p class="error" id="code-postal-error"></p>
 
-        <div class="field">
-          <label for="password2">Password Confirmation</label>
-          <input id="password2" name="password2" type="password" placeholder="••••••••" required />
-          <p class="error" id="password2-error">Minimum eight characters, at least one letter, one number and one special character</p>
-        </div>
-      </div>
+    <button type="submit">S'inscrire</button>
+  </form>
 
-      <div class="actions-bottom">
-        <button type="submit" class="btn">S’inscrire</button>
-      </div>
-    </form>
-  </main>
-
-  <script src=inscription.js></script>
+  <script src="inscription.js"></script>
 </body>
 </html>

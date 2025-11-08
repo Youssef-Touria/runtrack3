@@ -1,47 +1,25 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <title>Jour 05 – Connexion</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="assets/css/styles.css" />
+  <meta charset="UTF-8">
+  <title>Connexion</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Barre verte + badges -->
-  <header class="topbar">
-    <div class="topbar__inner">
-      <div class="brand">Jour 05</div>
-      <nav class="actions">
-        <a class="pill" href="inscription.html">Inscription</a>
-        <a class="pill" href="connexion.html">Connexion</a>
-      </nav>
-    </div>
-  </header>
+  <h1>Connexion</h1>
+  <form id="connexion-form">
+    
+    <label for="email">Email</label>
+    <input id="email" type="email" required>
+    <p class="error" id="email-error"></p>
 
-  <!-- Erreurs globales centrées -->
-  <section id="global-errors" class="global-errors" aria-live="polite" hidden></section>
+    <label for="password">Mot de passe</label>
+    <input id="password" type="password" required>
+    <p class="error" id="password-error"></p>
 
-  <!-- Carte formulaire -->
-  <main class="container">
-    <form id="login-form" novalidate>
-      <div class="field">
-        <label for="email">Email</label>
-        <input id="email" name="email" type="email" placeholder="john@doe.fr" required />
-        <p class="error" id="email-error"></p>
-      </div>
+    <button type="submit">Se connecter</button>
+  </form>
 
-      <div class="field">
-        <label for="password">Password</label>
-        <input id="password" name="password" type="password" placeholder="••••••••" required />
-        <p class="error" id="password-error">Minimum eight characters, at least one letter, one number and one special character</p>
-      </div>
-
-      <div class="actions-bottom">
-        <button type="submit" class="btn">Se connecter</button>
-      </div>
-    </form>
-  </main>
-
-  <script src="assets/js/connexion.js"></script>
+  <script src="connexion.js"></script>
 </body>
 </html>

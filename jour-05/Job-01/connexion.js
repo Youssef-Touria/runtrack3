@@ -1,70 +1,66 @@
-// Helpers
-const $ = (sel, root = document) => root.querySelector(sel);
+// Récupérer le formulaire
+const form = document.getElementById('connexion-form');
 
-const form = $('#login-form');
-const globalBox = $('#global-errors');
+// Récupérer les champs
+const email = document.getElementById('email');
+const password = document.getElementById('password');
 
-const ERR = {
-  email_required: 'Email is required',
-  pass_required: 'Password is required',
-  pass_format: 'Password format is wrong'
-};
-
-// Même règle que l'inscription : 8+ chars, 1 lettre, 1 chiffre, 1 spécial
-const PW_REGEX = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/;
-
-function setError(input, msg = '') {
-  const p = $('#' + input.id + '-error');
-  if (p) p.textContent = msg || '';
-  input.classList.toggle('invalid', !!msg);
+// Fonction pour afficher une erreur
+function afficherErreur(champId, message) {
+  const erreur = document.getElementById(champId + '-error');
+  erreur.textContent = message;
 }
 
-function validateEmail() {
-  const el = $('#email');
-  const v = el.value.trim();
-  if (!v) { setError(el, ''); return false; } // global gère le "required"
-  const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
-  setError(el, ok ? '' : "Format d'email invalide");
-  return ok;
+// Fonction pour effacer une erreur
+function effacerErreur(champId) {
+  const erreur = document.getElementById(champId + '-error');
+  erreur.textContent = '';
 }
 
-function validatePassword() {
-  const el = $('#password');
-  const v = el.value;
-  if (!v) { setError(el, 'Minimum eight characters, at least one letter, one number and one special character'); return false; }
-  const ok = PW_REGEX.test(v);
-  setError(el, ok ? '' : 'Minimum eight characters, at least one letter, one number and one special character');
-  return ok;
+// Valider l'email
+function validerEmail() {
+  const valeur = email.value;
+  if (!valeur.includes('@')) {
+    afficherErreur('email', 'L\'email doit contenir un @');
+    return false;
+  }
+  if (!valeur.includes('.')) {
+    afficherErreur('email', 'L\'email doit contenir un point');
+    return false;
+  }
+  effacerErreur('email');
+  return true;
 }
 
-// Erreurs globales (style de ta capture)
-function renderGlobalErrors() {
-  const msgs = [];
-  if (!$('#email').value.trim()) msgs.push(ERR.email_required);
-  if (!$('#password').value) msgs.push(ERR.pass_required);
-  if ($('#password').value && !PW_REGEX.test($('#password').value)) msgs.push(ERR.pass_format);
-
-  globalBox.innerHTML = msgs.map(m => `<p>${m}</p>`).join('');
-  globalBox.hidden = msgs.length === 0;
+// Valider le mot de passe
+function validerPassword() {
+  const valeur = password.value;
+  if (valeur.length < 8) {
+    afficherErreur('password', 'Le mot de passe doit avoir au moins 8 caractères');
+    return false;
+  }
+  effacerErreur('password');
+  return true;
 }
 
-// Live validation
-['input','blur'].forEach(evt => {
-  $('#email').addEventListener(evt, () => { validateEmail(); renderGlobalErrors(); });
-  $('#password').addEventListener(evt, () => { validatePassword(); renderGlobalErrors(); });
-});
+// Écouter les changements sur chaque champ
+email.addEventListener('blur', validerEmail);
+password.addEventListener('blur', validerPassword);
 
-// Submit
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const ok = validateEmail() & validatePassword();
-  renderGlobalErrors();
-  if (ok) {
-    alert('Connexion OK (démo).');
+// Quand on soumet le formulaire
+form.addEventListener('submit', function(e) {
+  e.preventDefault(); // Empêche l'envoi
+  
+  // Valider tous les champs
+  const emailValide = validerEmail();
+  const passwordValide = validerPassword();
+  
+  // Si tout est valide
+  if (emailValide && passwordValide) {
+    alert('Connexion réussie !');
+    console.log('Email:', email.value);
+    console.log('Password:', password.value);
   } else {
-    globalBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    alert('Veuillez corriger les erreurs');
   }
 });
-
-// Premier rendu (si champs vides)
-renderGlobalErrors();

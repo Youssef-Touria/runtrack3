@@ -1,54 +1,54 @@
-:root{
-  --green:#1b7a44;
-  --green-oval:#197a44;
-  --red:#c62828;
-  --border:#e6e6e6;
-}
-*{box-sizing:border-box}
-body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#111;background:#fff}
-
-.topbar{margin:18px auto 8px;max-width:1040px}
-.topbar__inner{
-  background:var(--green);
-  color:#fff;
-  border-radius:999px;
-  padding:16px 22px;
-  display:flex;align-items:center;justify-content:space-between
-}
-.brand{font-weight:800;font-size:28px}
-.actions{display:flex;gap:12px}
-.pill{
-  background:#fff;color:#1b1b1b;
-  padding:6px 14px;border-radius:999px;text-decoration:none;font-weight:600;
-  border:2px solid #fff
-}
-.pill:hover{filter:brightness(0.98)}
-
-.global-errors{
-  max-width:760px;margin:8px auto 0;text-align:center;line-height:1.4;
-}
-.global-errors p{color:var(--red);margin:6px 0;font-weight:600}
-
-.container{
-  max-width:760px;margin:28px auto;padding:20px;border:1px solid #eee;
-  border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.06)
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f0f0f0;
 }
 
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-@media (max-width:680px){.grid{grid-template-columns:1fr}}
-
-.field{display:grid;gap:6px;margin-bottom:14px}
-label{font-weight:600}
-input{
-  padding:10px 12px;border:1px solid #cfcfcf;border-radius:6px;outline:none;
+h1 {
+  text-align: center;
 }
-input:focus{border-color:#1976d2;box-shadow:0 0 0 3px rgba(25,118,210,.15)}
-input.invalid{border-color:var(--red);background:#fff}
-.error{min-height:1.1em;color:var(--red);font-size:.92rem}
 
-.actions-bottom{margin-top:16px}
-.btn{
-  background:#1b7a44;color:#fff;border:0;border-radius:6px;
-  padding:10px 16px;font-weight:700;cursor:pointer
+form {
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
 }
-.btn:hover{filter:brightness(1.05)}
+
+label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  margin: 5px 0;
+  min-height: 15px;
+}
+
+button {
+  width: 100%;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: darkgreen;
+}
